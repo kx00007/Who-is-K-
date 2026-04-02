@@ -20,7 +20,6 @@
 | **Target Platform** | Windows (Primary) — `cmd.exe` specific |
 | **Affected Endpoint** | `GET /remote_agent.php?action=graph_json` |
 | **Affected Parameter** | `graph_start` |
-| **Disclosure Type** | Coordinated Responsible Disclosure (90-day) |
 
 A critical, **unauthenticated Remote Code Execution (RCE)** vulnerability has been identified in Cacti version 1.2.30 and earlier when deployed on Windows operating systems. The vulnerability is the product of two weaknesses that **chain into a complete pre-authentication OS command injection primitive**.
 
@@ -177,10 +176,10 @@ a" & echo ^<?php system($_GET['cmd']); ?^> > C:\inetpub\wwwroot\cacti\shell.php 
 
 | Dimension | Rating | Description |
 |---|---|---|
-| 🔴 **Confidentiality** | HIGH | Full read access to database credentials, SNMP strings, API keys, monitored host data, and Windows file system |
-| 🔴 **Integrity** | HIGH | Arbitrary file write — enables persistent webshell, modification of Cacti config, poller scripts, and OS files |
-| 🔴 **Availability** | HIGH | Service termination, resource exhaustion, ransomware deployment, and complete host takeover |
-| ⚠️ **Scope** | CHANGED | Cacti monitors the network infrastructure — compromise enables lateral movement to **all monitored hosts** |
+| **Confidentiality** | HIGH | Full read access to database credentials, SNMP strings, API keys, monitored host data, and Windows file system |
+| **Integrity** | HIGH | Arbitrary file write — enables persistent webshell, modification of Cacti config, poller scripts, and OS files |
+| **Availability** | HIGH | Service termination, resource exhaustion, ransomware deployment, and complete host takeover |
+| **Scope** | CHANGED | Cacti monitors the network infrastructure — compromise enables lateral movement to **all monitored hosts** |
 
 ---
 
@@ -206,9 +205,9 @@ a" & echo ^<?php system($_GET['cmd']); ?^> > C:\inetpub\wwwroot\cacti\shell.php 
 
 | Priority | Action |
 |---|---|
-| 🔴 Immediate | Replace the custom `cacti_escapeshellarg()` for Windows with a robust implementation or use the native `escapeshellarg()` if possible |
-| 🔴 Immediate | Validate `graph_start` and `graph_end` parameters using `FILTER_VALIDATE_INT` **before** they reach the shell execution layer |
-| 🟠 Short-term | Restrict `X-Forwarded-For` and similar proxy headers — validate poller identity using cryptographic tokens rather than IP address comparison |
-| 🟡 Long-term | Replace all `proc_open` string commands with array invocation to eliminate shell parsing entirely. Implement Windows-specific CI/CD adversarial input tests |
+| Immediate | Replace the custom `cacti_escapeshellarg()` for Windows with a robust implementation or use the native `escapeshellarg()` if possible |
+| Immediate | Validate `graph_start` and `graph_end` parameters using `FILTER_VALIDATE_INT` **before** they reach the shell execution layer |
+| Short-term | Restrict `X-Forwarded-For` and similar proxy headers — validate poller identity using cryptographic tokens rather than IP address comparison |
+| Long-term | Replace all `proc_open` string commands with array invocation to eliminate shell parsing entirely. Implement Windows-specific CI/CD adversarial input tests |
 
 ---
