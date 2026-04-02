@@ -19,7 +19,6 @@
 ![Auth](https://img.shields.io/badge/Auth-Required-4A90D9?style=flat-square)
 ![Type](https://img.shields.io/badge/Type-OS_Command_Injection-8B0000?style=flat-square)
 ![Shell](https://img.shields.io/badge/Shell-RCE_Confirmed-success?style=flat-square&logo=gnu-bash&logoColor=white)
-![Disclosure](https://img.shields.io/badge/Disclosure-Responsible-555555?style=flat-square)
 
 <br>
 
