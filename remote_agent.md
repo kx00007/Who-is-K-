@@ -1,5 +1,3 @@
-<div align="center">
-
 ### `Vulnerability Report:`Unauthenticated RCE on Remote Agent
 
 > **Researcher:** K &nbsp;|&nbsp; **Product:** Cacti `≤ 1.2.30` (Windows) &nbsp;|&nbsp; **Endpoint:** `GET /remote_agent.php?action=graph_json`
