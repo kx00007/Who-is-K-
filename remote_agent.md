@@ -1,31 +1,8 @@
 <div align="center">
 
-```
-██████╗ ███████╗███╗   ███╗ ██████╗ ████████╗███████╗     █████╗  ██████╗ ███████╗███╗   ██╗████████╗
-██╔══██╗██╔════╝████╗ ████║██╔═══██╗╚══██╔══╝██╔════╝    ██╔══██╗██╔════╝ ██╔════╝████╗  ██║╚══██╔══╝
-██████╔╝█████╗  ██╔████╔██║██║   ██║   ██║   █████╗      ███████║██║  ███╗█████╗  ██╔██╗ ██║   ██║   
-██╔══██╗██╔══╝  ██║╚██╔╝██║██║   ██║   ██║   ██╔══╝      ██╔══██║██║   ██║██╔══╝  ██║╚██╗██║   ██║   
-██║  ██║███████╗██║ ╚═╝ ██║╚██████╔╝   ██║   ███████╗    ██║  ██║╚██████╔╝███████╗██║ ╚████║   ██║   
-╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝ ╚═════╝    ╚═╝   ╚══════╝    ╚═╝  ╚═╝ ╚═════╝ ╚══════╝╚═╝  ╚═══╝   ╚═╝   
-```
+### `Vulnerability Report:`Unauthenticated RCE on Remote Agent
 
-### `CVE-PENDING` · Cacti ≤ 1.2.30 · Unauthenticated RCE (Windows) · `remote_agent.php` · IP Spoofing + CMD Injection
-
-<br>
-
-![CVE](https://img.shields.io/badge/CVE-PENDING-FF0000?style=flat-square&logo=databricks&logoColor=white)
-![CVSS](https://img.shields.io/badge/CVSSv3.1-10.0_CRITICAL-critical?style=flat-square)
-![CWE-78](https://img.shields.io/badge/CWE--78-OS_Command_Injection-FFD700?style=flat-square)
-![CWE-290](https://img.shields.io/badge/CWE--290-Auth_Bypass_by_Spoofing-FF8C00?style=flat-square)
-![Auth](https://img.shields.io/badge/Auth-None_Required-brightgreen?style=flat-square)
-![Platform](https://img.shields.io/badge/Platform-Windows-0078D4?style=flat-square&logo=windows&logoColor=white)
-![Scope](https://img.shields.io/badge/Scope-CHANGED-purple?style=flat-square)
-![Shell](https://img.shields.io/badge/Shell-RCE_Confirmed-success?style=flat-square&logo=gnu-bash&logoColor=white)
-![Disclosure](https://img.shields.io/badge/Disclosure-Coordinated_90--day-555555?style=flat-square)
-
-<br>
-
-> **Researcher:** MENG HOKSENG &nbsp;|&nbsp; **Report Date:** 2026-03-16 &nbsp;|&nbsp; **Product:** Cacti `≤ 1.2.30` (Windows) &nbsp;|&nbsp; **Endpoint:** `GET /remote_agent.php?action=graph_json`
+> **Researcher:** K &nbsp;|&nbsp; **Product:** Cacti `≤ 1.2.30` (Windows) &nbsp;|&nbsp; **Endpoint:** `GET /remote_agent.php?action=graph_json`
 
 </div>
 
@@ -37,7 +14,6 @@
 |---|---|
 | **Product** | Cacti Network Monitoring Application |
 | **Affected Versions** | `≤ 1.2.30` (Confirmed on Windows deployment) |
-| **CVE ID** | Pending — Submission in Progress |
 | **Vulnerability Type** | OS Command Injection (CWE-78) |
 | **Secondary CWE** | CWE-290: Authentication Bypass by Spoofing |
 | **CVSSv3.1 Score** | `10.0 CRITICAL` |
@@ -238,23 +214,3 @@ a" & echo ^<?php system($_GET['cmd']); ?^> > C:\inetpub\wwwroot\cacti\shell.php 
 | 🟡 Long-term | Replace all `proc_open` string commands with array invocation to eliminate shell parsing entirely. Implement Windows-specific CI/CD adversarial input tests |
 
 ---
-
-## `[07]` References
-
-- [Cacti Official Site](https://cacti.net)
-- [CWE-78: OS Command Injection](https://cwe.mitre.org/data/definitions/78.html)
-- [CWE-290: Authentication Bypass by Spoofing](https://cwe.mitre.org/data/definitions/290.html)
-- [OWASP: OS Command Injection](https://owasp.org/www-community/attacks/Command_Injection)
-- [Microsoft: cmd.exe Command Parsing](https://docs.microsoft.com/en-us/windows-server/administration/windows-commands/cmd)
-- [MITRE CVE Request Form](https://cveform.mitre.org/)
-- [FIRST CVSS v3.1 Specification](https://www.first.org/cvss/v3.1/specification-document)
-
----
-
-<div align="center">
-
-**Researcher:** MENG HOKSENG &nbsp;·&nbsp; [`celeboy711-hue`](https://github.com/celeboy711-hue) &nbsp;·&nbsp; `Hokseng.meng@student.cadt.edu.kh`  
-*This report is submitted in good faith. The researcher requests a 90-day coordinated remediation window before any public disclosure.*  
-*The researcher will not publish exploit code until a patch is available.*
-
-</div>
